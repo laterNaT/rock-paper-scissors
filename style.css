@@ -1,0 +1,40 @@
+body {
+    background-color: #202C39;
+}
+
+.game-window {
+    display: flex;
+    width: 100vw;
+    height: 50vh;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+}
+
+.game-header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5em;
+}
+
+.game-outcome > p {
+    font-size: 4em;
+}
+
+.score > p {
+    font-size: 3em;
+}
+
+.round-outcome > p {
+    font-size: 3em;
+}
+
+.btn {
+    font-size: 2em;
+    border-radius: 5%;
+    height: 10rem;
+    width: 20rem;
+    background-color: #B7D1DA;
+}
