@@ -4,28 +4,29 @@ function computerPlay() {
     return plays[randomChoice];
 }
 
-function playRound(playerSelection, computerSelection) {
-    function innerFunction(playerSelection, computerSelection) {
-        if (playerSelection === computerSelection) {
-            return "draw";
-        } else if (playerSelection === "rock") {
-            if (computerSelection === "paper") {
-                return "lose";
-            }
-            return "win";
-        } else if (playerSelection === "paper") {
-            if (computerSelection === "scissors") {
-                return "lose";
-            }
-            return "win";
-        } else if (playerSelection === "scissors") {
-            if (computerSelection === "rock") {
-                return "lose";
-            }
-            return "win";
+function calculateOutcome(playerSelection, computerSelection) {
+    if (playerSelection === computerSelection) {
+        return "draw";
+    } else if (playerSelection === "rock") {
+        if (computerSelection === "paper") {
+            return "lose";
         }
+        return "win";
+    } else if (playerSelection === "paper") {
+        if (computerSelection === "scissors") {
+            return "lose";
+        }
+        return "win";
+    } else if (playerSelection === "scissors") {
+        if (computerSelection === "rock") {
+            return "lose";
+        }
+        return "win";
     }
-    let outcome = innerFunction(playerSelection.toLowerCase(), computerSelection);
+}
+
+function playRound(playerSelection, computerSelection) {
+    const outcome = calculateOutcome(playerSelection.toLowerCase(), computerSelection);
     return `You ${outcome}, ${playerSelection.toLowerCase()} vs ${computerSelection}.`;
 }
 
