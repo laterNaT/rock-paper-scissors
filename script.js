@@ -66,13 +66,13 @@ function generateEmoji(name) {
         default:
             return;
     }
-
 }
 
 function initialize() {
     const btns = document.querySelectorAll('.btn');
     const roundOutcome = document.querySelector('.round-outcome');
     const roundOutComeText = document.querySelector('.round-outcome-text > p');
+
     initializeText();
 
     btns.forEach((btn) => {
@@ -97,22 +97,24 @@ function initialize() {
     })
 }
 
-function endGgame() {
+function endGame() {
     const btns = document.querySelectorAll('.btn');
     const gameOutCome = document.querySelector('.game-outcome > p');
     const roundOutCome = document.querySelector('.round-outcome > p');
     const roundOutComeText = document.querySelector('.round-outcome-text > p');
-    setTimeout(() => {
-        roundOutComeText.innerHTML = '';
-        gameOutCome.innerHTML = '';
-        roundOutCome.innerHTML = '';
-    }, 3000)
+
     btns.forEach((btn) => {
         btn.disabled = true;
         setTimeout(() => {
             btn.disabled = false;
         }, 3000);
     });
+
+    setTimeout(() => {
+        roundOutComeText.innerHTML = '';
+        gameOutCome.innerHTML = '';
+        roundOutCome.innerHTML = '';
+    }, 3000);
 }
 
 const updateScore = (function() {
@@ -125,14 +127,19 @@ const updateScore = (function() {
         hasPlayerWon ? playerScore++ : computerScore++;
         if (playerScore >= 5) {
             gameOutCome.innerHTML = 'You won!';
-            playerScore = 0;
-            computerScore = 0;
-            endGgame();
+            setTimeout(() => {
+                playerScore = 0;
+                computerScore = 0;
+                endGame();
+            }, 1000);
+
         } else if (computerScore >= 5) {
             gameOutCome.innerHTML = 'You lost!';
-            playerScore = 0;
-            computerScore = 0;
-            endGgame();
+            setTimeout(() => {
+                playerScore = 0;
+                computerScore = 0;
+                endGame();
+            }, 3000)
         }
         score.innerHTML = `${playerScore} vs ${computerScore}`;
     }
