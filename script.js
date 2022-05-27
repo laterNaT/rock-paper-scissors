@@ -75,6 +75,13 @@ function generateEmoji(name) {
     }
 }
 
+function toggleButtons(toDisable) {
+    const btns = document.querySelectorAll('.btn');
+    btns.forEach((btn) => {
+        btn.disabled = !!toDisable;
+    })
+}
+
 function initialize() {
     const btns = document.querySelectorAll('.btn');
     const roundOutcome = document.querySelector('.round-outcome');
@@ -94,10 +101,12 @@ function initialize() {
                 }, 2000);
             }
             const playerSelection = e.target.id;
+            toggleButtons(true);
             const outcome = await playRound(playerSelection);
             roundOutcome.replaceChildren();
             roundOutcome.appendChild(generateEmoji(outcome['computerSelection']));
             roundOutComeText.innerHTML = 'You ' + outcome['outcome'] + '.';
+            toggleButtons(false);
         })
     })
 }
@@ -105,7 +114,7 @@ function initialize() {
 function endGame() {
     const btns = document.querySelectorAll('.btn');
     const gameOutCome = document.querySelector('.game-outcome > p');
-    const roundOutCome = document.querySelector('.round-outcome > p');
+    const roundOutCome = document.querySelector('.round-outcome');
     const roundOutComeText = document.querySelector('.round-outcome-text > p');
 
     btns.forEach((btn) => {
@@ -117,8 +126,10 @@ function endGame() {
 
     setTimeout(() => {
         roundOutComeText.innerHTML = '';
+        roundOutCome.replaceChildren();
         gameOutCome.innerHTML = '';
         roundOutCome.innerHTML = '';
+        initializeText()
     }, 3000);
 }
 
