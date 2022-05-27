@@ -40,10 +40,32 @@ body p {
     border-radius: 10%;
     height: 10rem;
     width: 13rem;
-    background-color: #B7D1DA;
+    background-color: #b7d1da17;
     border: none;
+    cursor: pointer;
+}
+
+.btn > span {
+    display: inline-block;
+    transition: all .2s ease-in-out;
+}
+
+.wiggle {
+    animation: wiggle 1.5s 0s;
+}
+
+.btn > span:hover {
+    transform: scale(1.4);
 }
 
 .btn:hover {
-    background-color :#283845
+    background-color :#283845;
 }
+
+@keyframes wiggle {
+    0% { transform: rotate(0deg); }
+    25% { transform: rotate(30deg); }
+    50% { transform: rotate(-30deg); }
+    100% { transform: rotate(0deg); }
+}
+

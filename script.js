@@ -38,7 +38,7 @@ function initializeText() {
     const randomText = [
         'Dare you challenge me?',
         'Bring it on!',
-        'How about a game of rock paper scissors??',
+        'How about a game of rock paper scissors?',
         'I\'m not rigged, I swear!'
     ]
 
@@ -52,6 +52,15 @@ function initialize() {
 
     btns.forEach((btn) => {
         btn.addEventListener('click', (e) => {
+            if (!e.target.id) {
+                return;
+            }
+            const exists = e.target.classList.toggle('wiggle');
+            if (exists) {
+                setTimeout(() => {
+                    e.target.classList.toggle('wiggle');
+                }, 2000);
+            }
             const playerSelection = e.target.id;
             const outcome = playRound(playerSelection);
             const resultText = document.querySelector('.round-outcome > p');
