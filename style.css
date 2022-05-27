@@ -2,6 +2,10 @@ body {
     background-color: #202C39;
 }
 
+body p {
+    color: white;
+}
+
 .game-window {
     display: flex;
     width: 100vw;
@@ -32,9 +36,14 @@ body {
 }
 
 .btn {
-    font-size: 2em;
-    border-radius: 5%;
+    font-size: 5em;
+    border-radius: 10%;
     height: 10rem;
-    width: 20rem;
+    width: 13rem;
     background-color: #B7D1DA;
+    border: none;
+}
+
+.btn:hover {
+    background-color :#283845
 }

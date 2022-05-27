@@ -38,7 +38,7 @@ function initializeText() {
     const randomText = [
         'Dare you challenge me?',
         'Bring it on!',
-        'How about a game of tic-tac-toe?',
+        'How about a game of rock paper scissors??',
         'I\'m not rigged, I swear!'
     ]
 
@@ -52,7 +52,7 @@ function initialize() {
 
     btns.forEach((btn) => {
         btn.addEventListener('click', (e) => {
-            const playerSelection = e.target.innerHTML;
+            const playerSelection = e.target.id;
             const outcome = playRound(playerSelection);
             const resultText = document.querySelector('.round-outcome > p');
             resultText.innerHTML = outcome;
