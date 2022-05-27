@@ -9,7 +9,7 @@ body p {
 .game-window {
     display: flex;
     width: 100vw;
-    height: 50vh;
+    margin-top: 5em;
     justify-content: center;
     align-items: center;
     gap: 1em;
@@ -35,7 +35,11 @@ body p {
     font-size: 3em;
 }
 
-.btn {
+.round-outcome-text > p {
+    font-size: 2em;
+}
+
+.btn, .btn2 {
     font-size: 5em;
     border-radius: 10%;
     height: 10rem;
@@ -43,6 +47,11 @@ body p {
     background-color: #b7d1da17;
     border: none;
     cursor: pointer;
+}
+
+.btn2 {
+    background-color: transparent;
+    pointer-events: none;
 }
 
 .btn > span {
@@ -61,6 +70,8 @@ body p {
 .btn:hover {
     background-color :#283845;
 }
+
+
 
 @keyframes wiggle {
     0% { transform: rotate(0deg); }

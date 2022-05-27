@@ -35,6 +35,7 @@ function getRandomInt(min, max) {
 function initializeText() {
     const score = document.querySelector('.score > p');
     const welcomeText = document.querySelector('.round-outcome > p');
+    const roundOutComeText = document.querySelector('.round-outcome-text > p');
     const randomText = [
         'Dare you challenge me?',
         'Bring it on!',
@@ -44,10 +45,34 @@ function initializeText() {
 
     score.innerHTML = '0 vs 0';
     welcomeText.innerHTML = randomText[getRandomInt(0, randomText.length)];
+    roundOutComeText.innerHTML = ' ';
+}
+
+function generateEmoji(name) {
+    const btn = document.createElement('button');
+    const span = document.createElement('span');
+    btn.classList.add('btn2');
+    btn.appendChild(span);
+    switch (name) {
+        case 'rock':
+            span.innerHTML = '✊';
+            return btn;
+        case 'paper':
+            span.innerHTML = '✋';
+            return btn;
+        case 'scissors':
+            span.innerHTML = '✌️';
+            return btn;
+        default:
+            return;
+    }
+
 }
 
 function initialize() {
     const btns = document.querySelectorAll('.btn');
+    const roundOutcome = document.querySelector('.round-outcome');
+    const roundOutComeText = document.querySelector('.round-outcome-text > p');
     initializeText();
 
     btns.forEach((btn) => {
@@ -63,8 +88,11 @@ function initialize() {
             }
             const playerSelection = e.target.id;
             const outcome = playRound(playerSelection);
-            const resultText = document.querySelector('.round-outcome > p');
-            resultText.innerHTML = outcome;
+
+            roundOutcome.replaceChildren();
+            roundOutcome.appendChild(generateEmoji(outcome['playerSelection']));
+            roundOutcome.appendChild(generateEmoji(outcome['computerSelection']));
+            roundOutComeText.innerHTML = 'You ' + outcome['outcome'] + '.';
         })
     })
 }
@@ -73,13 +101,16 @@ function endGgame() {
     const btns = document.querySelectorAll('.btn');
     const gameOutCome = document.querySelector('.game-outcome > p');
     const roundOutCome = document.querySelector('.round-outcome > p');
+    const roundOutComeText = document.querySelector('.round-outcome-text > p');
+    setTimeout(() => {
+        roundOutComeText.innerHTML = '';
+        gameOutCome.innerHTML = '';
+        roundOutCome.innerHTML = '';
+    }, 3000)
     btns.forEach((btn) => {
         btn.disabled = true;
         setTimeout(() => {
             btn.disabled = false;
-            gameOutCome.innerHTML = '';
-            roundOutCome.innerHTML = '';
-            initializeText();
         }, 3000);
     });
 }
@@ -113,7 +144,7 @@ function playRound(playerSelection) {
     if (outcome !== 'draw') {
         outcome === 'win' ? updateScore(true) : updateScore(false);
     }
-    return `You ${outcome}, ${playerSelection.toLowerCase()} vs ${computerSelection}.`;
+    return {outcome, playerSelection, computerSelection};
 }
 
 window.onload = initialize();
