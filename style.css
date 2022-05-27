@@ -23,10 +23,10 @@ body p {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 5em;
 }
 
-.game-outcome > p {
+.game-outcome {
+    min-height: 4em;
     font-size: 4em;
 }
 
@@ -34,11 +34,17 @@ body p {
     font-size: 3em;
 }
 
+.round-outcome {
+    height: 8em;
+}
+
 .round-outcome > p {
     font-size: 3em;
+    max-height: 3em;
 }
 
 .round-outcome-text > p {
+    min-height: 2em;
     font-size: 2em;
 }
 
