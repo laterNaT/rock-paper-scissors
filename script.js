@@ -78,7 +78,7 @@ function generateEmoji(name) {
 function toggleButtons(toDisable) {
     const btns = document.querySelectorAll('.btn');
     btns.forEach((btn) => {
-        btn.disabled = !!toDisable;
+        btn.disabled = toDisable;
     })
 }
 
@@ -143,19 +143,22 @@ const updateScore = (function() {
         hasPlayerWon ? playerScore++ : computerScore++;
         if (playerScore >= 5) {
             gameOutCome.innerHTML = 'You won!';
+            toggleButtons(true);
             setTimeout(() => {
                 playerScore = 0;
                 computerScore = 0;
+                toggleButtons(false);
                 endGame();
-            }, 1000);
-
+            }, 2000);
         } else if (computerScore >= 5) {
-            gameOutCome.innerHTML = 'You lost!';
+            gameOutCome.innerHTML = 'You lost';
+            toggleButtons(true);
             setTimeout(() => {
                 playerScore = 0;
                 computerScore = 0;
+                toggleButtons(false);
                 endGame();
-            }, 3000)
+            }, 2000);
         }
         score.innerHTML = `${playerScore} vs ${computerScore}`;
     }
