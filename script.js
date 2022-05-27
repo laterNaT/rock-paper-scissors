@@ -1,7 +1,14 @@
 function computerPlay() {
+    const roundOutComeText = document.querySelector('.round-outcome-text > p');
+    const thinkMessage = 'Hmm... let\'s see...';
     const plays = ["rock", "paper", "scissors"];
-    let randomChoice = getRandomInt(0, 3);
-    return plays[randomChoice];
+    const randomChoice = getRandomInt(0, 3);
+    roundOutComeText.innerHTML = thinkMessage;
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve(plays[randomChoice]);
+        }, getRandomInt(500, 3000));
+    });
 }
 
 function calculateOutcome(playerSelection, computerSelection) {
@@ -76,7 +83,7 @@ function initialize() {
     initializeText();
 
     btns.forEach((btn) => {
-        btn.addEventListener('click', (e) => {
+        btn.addEventListener('click', async (e) => {
             if (!e.target.id) {
                 return;
             }
@@ -87,10 +94,8 @@ function initialize() {
                 }, 2000);
             }
             const playerSelection = e.target.id;
-            const outcome = playRound(playerSelection);
-
+            const outcome = await playRound(playerSelection);
             roundOutcome.replaceChildren();
-            roundOutcome.appendChild(generateEmoji(outcome['playerSelection']));
             roundOutcome.appendChild(generateEmoji(outcome['computerSelection']));
             roundOutComeText.innerHTML = 'You ' + outcome['outcome'] + '.';
         })
@@ -145,8 +150,9 @@ const updateScore = (function() {
     }
 })();
 
-function playRound(playerSelection) {
-    const computerSelection = computerPlay();
+async function playRound(playerSelection) {
+    const computerSelection = await computerPlay();
+    console.log(`computerSelection: ${computerSelection}`);
     const outcome = calculateOutcome(playerSelection.toLowerCase(), computerSelection);
     if (outcome !== 'draw') {
         outcome === 'win' ? updateScore(true) : updateScore(false);
