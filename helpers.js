@@ -35,16 +35,7 @@ function getRandomInt(min, max) {
 
 function initializeText() {
   const score = document.querySelector('.score > p');
-  // const welcomeText = document.querySelector('.computer-selection > p');
-  // const randomText = [
-  //   'Dare you challenge me?',
-  //   'Bring it on!',
-  //   'How about a game of rock paper scissors?',
-  //   'I\'m not rigged, I swear!',
-  // ];
-
   score.innerHTML = '0 vs 0';
-  // welcomeText.innerHTML = randomText[getRandomInt(0, randomText.length)];
 }
 
 export {

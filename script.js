@@ -101,7 +101,8 @@ function endGame() {
   const btns = document.querySelectorAll('.btn');
   const startGameBtn = document.querySelector('.play-btn');
 
-  // hack for fixing await delay, restore visibility on restart
+  // Text is set in button click callback so
+  // hide the text and restore visibility in restartGame
   roundOutComeText.style.visibility = 'hidden';
 
   btns.forEach((btn) => {
