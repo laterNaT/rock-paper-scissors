@@ -74,22 +74,12 @@ function initialize() {
 }
 
 function endGame() {
-  const btns = document.querySelectorAll('.btn');
   const gameOutCome = document.querySelector('.game-outcome > p');
   const roundOutComeText = document.querySelector('.round-outcome-text > p');
 
-  btns.forEach((btn) => {
-    btn.disabled = true;
-    setTimeout(() => {
-      btn.disabled = false;
-    }, 3000);
-  });
-
-  setTimeout(() => {
-    roundOutComeText.innerHTML = '';
-    gameOutCome.innerHTML = '';
-    initializeText();
-  }, 3000);
+  roundOutComeText.innerHTML = '';
+  gameOutCome.innerHTML = '';
+  initializeText();
 }
 
 const updateScore = (function initUpdateScore() {
@@ -106,22 +96,12 @@ const updateScore = (function initUpdateScore() {
     }
     if (playerScore >= 5) {
       gameOutCome.innerHTML = 'You won!';
-      toggleButtons(true);
-      setTimeout(() => {
-        playerScore = 0;
-        computerScore = 0;
-        toggleButtons(false);
-        endGame();
-      }, 2000);
+      playerScore = 0;
+      computerScore = 0;
     } else if (computerScore >= 5) {
       gameOutCome.innerHTML = 'You lost';
-      toggleButtons(true);
-      setTimeout(() => {
-        playerScore = 0;
-        computerScore = 0;
-        toggleButtons(false);
-        endGame();
-      }, 2000);
+      playerScore = 0;
+      computerScore = 0;
     }
     score.innerHTML = `${playerScore} vs ${computerScore}`;
   };
