@@ -9,6 +9,9 @@ function generateEmoji(name) {
   const btn = document.createElement('button');
   const span = document.createElement('span');
   btn.classList.add('btn2');
+  btn.style.backgroundColor = 'transparent';
+  btn.style.pointerEvents = 'none';
+
   btn.appendChild(span);
   switch (name) {
     case 'rock':
