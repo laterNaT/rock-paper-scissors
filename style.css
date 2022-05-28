@@ -35,6 +35,9 @@ body p {
 }
 
 .round-outcome {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     height: 8em;
 }
 
@@ -63,6 +66,15 @@ body p {
     pointer-events: none;
 }
 
+.play-btn {
+    background-color: #b7d1da17;
+    border: none;
+    border-radius: 10%;
+    padding: 0.5em 1em 0.5em 1em;
+    font-size: 3em;
+    color: white;
+}
+
 .btn > span {
     display: inline-block;
     transition: all .2s ease-in-out;
@@ -76,7 +88,7 @@ body p {
     transform: scale(1.4);
 }
 
-.btn:hover {
+.btn:hover, .play-btn:hover {
     background-color :#283845;
 }
 

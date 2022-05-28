@@ -48,8 +48,17 @@ function initialize() {
   const btns = document.querySelectorAll('.btn');
   const roundOutcome = document.querySelector('.round-outcome');
   const roundOutComeText = document.querySelector('.round-outcome-text > p');
+  const startGameBtn = document.createElement('button');
+  startGameBtn.classList.add('play-btn');
+  startGameBtn.innerHTML = 'Play';
+  startGameBtn.addEventListener('click', (e) => {
+    e.target.hidden = true;
+    btns.forEach(btn => btn.hidden = false);
+  })
+  roundOutcome.appendChild(startGameBtn);
 
   initializeText();
+
 
   btns.forEach((btn) => {
     btn.addEventListener('click', async (e) => {
