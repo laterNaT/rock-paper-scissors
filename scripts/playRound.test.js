@@ -1,4 +1,4 @@
-const calculateOutcome = require('./script');
+const calculateOutcome = require('./script.js');
 
 describe('calculateOutCome (rock)', () => {
     test('rock vs rock', () => {
