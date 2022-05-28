@@ -46,19 +46,17 @@ function calculateOutcome(playerSelection, computerSelection) {
 
 function initialize() {
   const btns = document.querySelectorAll('.btn');
-  const roundOutcome = document.querySelector('.round-outcome');
+  const computerSelection = document.querySelector('.computer-selection');
   const roundOutComeText = document.querySelector('.round-outcome-text > p');
-  const startGameBtn = document.createElement('button');
-  startGameBtn.classList.add('play-btn');
-  startGameBtn.innerHTML = 'Play';
+  const startGameBtn = document.querySelector('.play-btn');
   startGameBtn.addEventListener('click', (e) => {
-    e.target.hidden = true;
-    btns.forEach(btn => btn.hidden = false);
-  })
-  roundOutcome.appendChild(startGameBtn);
+    e.target.style.visibility = 'hidden';
+    btns.forEach((btn) => {
+      btn.style.visibility = 'initial';
+    });
+  }, { once: true });
 
   initializeText();
-
 
   btns.forEach((btn) => {
     btn.addEventListener('click', async (e) => {
@@ -74,21 +72,47 @@ function initialize() {
       const playerSelection = e.target.id;
       toggleButtons(true);
       const outcome = await playRound(playerSelection);
-      roundOutcome.replaceChildren();
-      roundOutcome.appendChild(generateEmoji(outcome.computerSelection));
+      computerSelection.replaceChildren();
+      computerSelection.appendChild(generateEmoji(outcome.computerSelection));
       roundOutComeText.innerHTML = `You ${outcome.outcome}.`;
       toggleButtons(false);
     });
   });
 }
 
+function restartGame() {
+  const btns = document.querySelectorAll('.btn');
+  const score = document.querySelector('.score > p');
+  const computerSelection = document.querySelector('.computer-selection');
+  const roundOutComeText = document.querySelector('.round-outcome-text > p');
+
+  roundOutComeText.style.visibility = 'initial';
+  roundOutComeText.innerHTML = '';
+  btns.forEach((btn) => {
+    btn.style.visibility = 'initial';
+  });
+  score.innerHTML = '0 vs 0';
+  computerSelection.replaceChildren();
+}
+
 function endGame() {
   const gameOutCome = document.querySelector('.game-outcome > p');
   const roundOutComeText = document.querySelector('.round-outcome-text > p');
+  const btns = document.querySelectorAll('.btn');
+  const startGameBtn = document.querySelector('.play-btn');
 
-  roundOutComeText.innerHTML = '';
-  gameOutCome.innerHTML = '';
-  initializeText();
+  // hack for fixing await delay, restore visibility on restart
+  roundOutComeText.style.visibility = 'hidden';
+
+  btns.forEach((btn) => {
+    btn.style.visibility = 'hidden';
+  });
+
+  startGameBtn.addEventListener('click', (e) => {
+    gameOutCome.innerHTML = '';
+    e.target.style.visibility = 'hidden';
+    restartGame();
+  }, { once: true });
 }
 
 const updateScore = (function initUpdateScore() {
@@ -96,6 +120,7 @@ const updateScore = (function initUpdateScore() {
   let computerScore = 0;
   const gameOutCome = document.querySelector('.game-outcome > p');
   const score = document.querySelector('.score > p');
+  const startGameBtn = document.querySelector('.play-btn');
 
   return (hasPlayerWon) => {
     if (hasPlayerWon) {
@@ -103,16 +128,22 @@ const updateScore = (function initUpdateScore() {
     } else {
       computerScore += 1;
     }
+    score.innerHTML = `${playerScore} vs ${computerScore}`;
     if (playerScore >= 5) {
       gameOutCome.innerHTML = 'You won!';
       playerScore = 0;
       computerScore = 0;
+      startGameBtn.innerHTML = 'Play again?';
+      startGameBtn.style.visibility = 'initial';
+      endGame();
     } else if (computerScore >= 5) {
       gameOutCome.innerHTML = 'You lost';
       playerScore = 0;
       computerScore = 0;
+      startGameBtn.innerHTML = 'Play again?';
+      startGameBtn.style.visibility = 'initial';
+      endGame();
     }
-    score.innerHTML = `${playerScore} vs ${computerScore}`;
   };
 }());
 
