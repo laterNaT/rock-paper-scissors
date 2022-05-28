@@ -14,7 +14,7 @@ function computerPlay() {
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve(plays[randomChoice]);
-    }, getRandomInt(500, 3000));
+    }, getRandomInt(500, 1000));
   });
 }
 
