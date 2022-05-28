@@ -7,10 +7,11 @@ import {
 
 function computerPlay() {
   const roundOutComeText = document.querySelector('.round-outcome-text > p');
-  const thinkMessage = 'Hmm... let\'s see...';
   const plays = ['rock', 'paper', 'scissors'];
   const randomChoice = getRandomInt(0, 3);
-  roundOutComeText.innerHTML = thinkMessage;
+
+  roundOutComeText.innerHTML = 'Hmm... let\'s see...';
+
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve(plays[randomChoice]);
@@ -22,6 +23,7 @@ function calculateOutcome(playerSelection, computerSelection) {
   if (playerSelection === computerSelection) {
     return 'draw';
   }
+
   if (playerSelection === 'rock') {
     if (computerSelection === 'paper') {
       return 'lose';
@@ -49,6 +51,9 @@ function initialize() {
   const computerSelection = document.querySelector('.computer-selection');
   const roundOutComeText = document.querySelector('.round-outcome-text > p');
   const startGameBtn = document.querySelector('.play-btn');
+
+  initializeText();
+
   startGameBtn.addEventListener('click', (e) => {
     e.target.style.visibility = 'hidden';
     btns.forEach((btn) => {
@@ -56,20 +61,20 @@ function initialize() {
     });
   }, { once: true });
 
-  initializeText();
-
   btns.forEach((btn) => {
     btn.addEventListener('click', async (e) => {
-      if (!e.target.id) {
+      const playerSelection = e.target.id;
+      if (!playerSelection) {
         return;
       }
-      const exists = e.target.classList.toggle('wiggle');
-      if (exists) {
+
+      const emojiIsWiggling = e.target.classList.toggle('wiggle');
+      if (emojiIsWiggling) {
         setTimeout(() => {
           e.target.classList.toggle('wiggle');
         }, 2000);
       }
-      const playerSelection = e.target.id;
+
       toggleButtons(true);
       const outcome = await playRound(playerSelection);
       computerSelection.replaceChildren();
