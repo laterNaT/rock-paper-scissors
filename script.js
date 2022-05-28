@@ -15,7 +15,7 @@ function computerPlay() {
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve(plays[randomChoice]);
-    }, getRandomInt(500, 1000));
+    }, getRandomInt(1, 1));
   });
 }
 
@@ -55,7 +55,7 @@ function initialize() {
   initializeText();
 
   startGameBtn.addEventListener('click', (e) => {
-    e.target.style.visibility = 'hidden';
+    e.target.style.display = 'none';
     btns.forEach((btn) => {
       btn.style.visibility = 'initial';
     });
@@ -116,7 +116,7 @@ function endGame() {
 
   startGameBtn.addEventListener('click', (e) => {
     gameOutCome.innerHTML = '';
-    e.target.style.visibility = 'hidden';
+    e.target.style.display = 'none';
     restartGame();
   }, { once: true });
 }
@@ -140,14 +140,14 @@ const updateScore = (function initUpdateScore() {
       playerScore = 0;
       computerScore = 0;
       startGameBtn.innerHTML = 'Play again?';
-      startGameBtn.style.visibility = 'initial';
+      startGameBtn.style.display = 'block';
       endGame();
     } else if (computerScore >= 5) {
       gameOutCome.innerHTML = 'You lost';
       playerScore = 0;
       computerScore = 0;
       startGameBtn.innerHTML = 'Play again?';
-      startGameBtn.style.visibility = 'initial';
+      startGameBtn.style.display = 'block';
       endGame();
     }
   };
