@@ -3,9 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <script src="script.js"></script>
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="style.css">
+    <script type="module" src="script.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
 
+<header class="game-header">
+    <div class="game-outcome">
+        <p></p>
+    </div>
+
+    <div class="score">
+        <p></p>
+    </div>
+
+    <div class="computer-selection">
+        <p></p>
+    </div>
+
+    <button class="play-btn">
+        Play
+    </button>
+
+    <div class="round-outcome-text">
+        <p></p>
+    </div>
+</header>
+
+<main class="game-window">
+    <button class="btn">
+        <span id="rock">✊</span>
+    </button>
+    <button class="btn">
+        <span id="paper">✋</span>
+    </button>
+    <button class="btn">
+        <span id="scissors">✌️</span>
+    </button>
+</main>
 </body>
 </html>

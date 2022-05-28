@@ -1,0 +1,104 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+:root {
+    --white-text: #dedede;
+    --btn-bg-color: #b7d1da17;
+    --bg-color: #202C39;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: var(--bg-color);
+    color: var(--white-text);
+    font-family: 'Roboto', sans-serif;
+}
+
+.game-window {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+    margin-top: 5em;
+}
+
+.game-header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.game-outcome {
+    max-height: 4em;
+    font-size: 4em;
+    margin-top: 2em;
+}
+
+.score > p {
+    font-size: 3em;
+}
+
+.computer-selection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-height: 8em;
+    margin-top: 2em;
+}
+
+.round-outcome-text > p {
+    min-height: 2em;
+    font-size: 2em;
+}
+
+.btn {
+    /* Hide buttons before game begins */
+    visibility: hidden;
+}
+
+.btn, .btn2 {
+    font-size: 5em;
+    border-radius: 10%;
+    height: 10rem;
+    width: 13rem;
+    background-color: var(--btn-bg-color);
+    border: none;
+    cursor: pointer;
+}
+
+.btn > span {
+    display: inline-block;
+    transition: all .2s ease-in-out;
+}
+
+.btn > span:hover {
+    transform: scale(1.4);
+}
+
+.btn:hover, .play-btn:hover {
+    background-color: #283845;
+}
+
+.play-btn {
+    background-color: var(--btn-bg-color);
+    border: none;
+    border-radius: 10%;
+    padding: 0.5em 1em 0.5em 1em;
+    font-size: 3em;
+    color: var(--white-text);
+}
+
+.wiggle {
+    animation: wiggle 1.5s 0s;
+}
+
+
+@keyframes wiggle {
+    0% { transform: rotate(0deg); }
+    25% { transform: rotate(30deg); }
+    50% { transform: rotate(-30deg); }
+    100% { transform: rotate(0deg); }
+}
+
