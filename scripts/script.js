@@ -68,11 +68,11 @@ function initialize() {
         return;
       }
 
-      const emojiIsWiggling = e.target.classList.toggle('wiggle');
-      if (emojiIsWiggling) {
+      const classInList = e.target.classList.toggle('wiggle');
+      if (classInList) {
         setTimeout(() => {
           e.target.classList.toggle('wiggle');
-        }, 2000);
+        }, 1500);
       }
 
       toggleButtons(true);
